@@ -33,7 +33,7 @@ private:
     std::string banknumber;
     std::string banknumberAgainst;
     std::string banknumberAgainstName;
-    std::string valuta
+    std::string valuta;
     long balanceBeforeMutation;
     std::string mutationValuta;
     long mutationAmount;
