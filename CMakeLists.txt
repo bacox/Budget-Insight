@@ -6,4 +6,4 @@ set (CMAKE_CXX_STANDARD 17)
 set(CMAKE_BUILD_TYPE Debug)
 
 
-add_executable(budget-insight main.cpp)
+add_executable(budget-insight main.cpp Transaction.cpp Transaction.h)
