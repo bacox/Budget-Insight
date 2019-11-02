@@ -6,6 +6,7 @@
 #define BUDGET_INSIGHT_TRANSACTION_H
 
 #include <string>
+#include <ostream>
 
 class Transaction {
     /**
@@ -121,6 +122,8 @@ public:
     bool operator==(const Transaction &rhs) const;
 
     bool operator!=(const Transaction &rhs) const;
+
+    friend std::ostream &operator<<(std::ostream &os, const Transaction &transaction);
 };
 
 

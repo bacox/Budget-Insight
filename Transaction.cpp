@@ -152,3 +152,15 @@ bool Transaction::operator==(const Transaction &rhs) const {
 bool Transaction::operator!=(const Transaction &rhs) const {
     return !(rhs == *this);
 }
+
+std::ostream &operator<<(std::ostream &os, const Transaction &transaction) {
+    os << "date: " << transaction.date << " banknumber: " << transaction.banknumber << " banknumberAgainst: "
+       << transaction.banknumberAgainst << " banknumberAgainstName: " << transaction.banknumberAgainstName
+       << " valuta: " << transaction.valuta << " balanceBeforeMutation: " << transaction.balanceBeforeMutation
+       << " mutationValuta: " << transaction.mutationValuta << " mutationAmount: " << transaction.mutationAmount
+       << " journalDate: " << transaction.journalDate << " valutaDate: " << transaction.valutaDate << " internalCode: "
+       << transaction.internalCode << " globalCode: " << transaction.globalCode << " ID: " << transaction.ID
+       << " paymentReference: " << transaction.paymentReference << " description: " << transaction.description
+       << " statementNumber: " << transaction.statementNumber;
+    return os;
+}
