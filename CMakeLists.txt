@@ -17,4 +17,4 @@ target_link_libraries(budget-insight
         SQLiteCpp
         sqlite3
         pthread
-        d1)
+        dl)
