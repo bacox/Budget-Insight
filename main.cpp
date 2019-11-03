@@ -6,6 +6,7 @@
 #include "RandomHelper.h"
 #include "Transaction.h"
 #include "TransactionTestGenerator.h"
+#include "Data/Database.h"
 #include <SQLiteCpp/SQLiteCpp.h>
 
 
@@ -61,12 +62,25 @@ int main(int argc, char *argv[]){
     std::cout << "everything ok, quitting\n";
 
 
+    Database db;
+
+    db.createTransactionTable();
+
+
     std::cout << "Generating new transactions" << std::endl;
 //    Transaction * t1 = TransactionTestGenerator::generate();
 //    std::cout << (*t1) << std::endl;
     for( int i =0; i < 10; i++) {
-        std::cout <<  (*TransactionTestGenerator::generate()) << std::endl;
-
+        Transaction * t1 = TransactionTestGenerator::generate();
+//        std::cout <<  (*t1) << std::endl;
+        db.insertTransaction(*t1);
     }
-        return 0;
+
+    std::vector<Transaction> transactions = db.getAllTransactions();
+    db.emptyTransactiontable();
+    db.deleteTransactionTable();
+    for( Transaction t : transactions) {
+        std::cout << t << std::endl;
+    }
+    return 0;
 }

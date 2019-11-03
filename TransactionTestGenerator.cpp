@@ -25,5 +25,6 @@ Transaction *TransactionTestGenerator::generate() {
             mutationAmount,
             journalDate,
             icode,
-            gcode,id);
+            gcode,
+            id);
 }

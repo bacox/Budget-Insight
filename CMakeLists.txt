@@ -11,7 +11,7 @@ add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/thirdparty/SQLiteCpp)
 include_directories(
         ${CMAKE_CURRENT_LIST_DIR}/thirdparty/SQLiteCpp/include
 )
-add_executable(budget-insight main.cpp Transaction.cpp Transaction.h RandomHelper.cpp RandomHelper.h TransactionTestGenerator.cpp TransactionTestGenerator.h)
+add_executable(budget-insight main.cpp Transaction.cpp Transaction.h RandomHelper.cpp RandomHelper.h TransactionTestGenerator.cpp TransactionTestGenerator.h Data/Database.cpp Data/Database.h)
 target_link_libraries(budget-insight
         Catch2::Catch2
         SQLiteCpp
