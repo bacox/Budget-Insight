@@ -108,3 +108,26 @@ std::string RandomHelper::WordCapitalize(int length) {
     return word;
 }
 
+std::string RandomHelper::IBAN() {
+    std::stringstream iban;
+    iban << "NL";
+    iban << 0;
+    iban << Int(0,9);
+    iban << "ASNB";
+    iban << IntString(10);
+
+    return iban.str();
+}
+
+char RandomHelper::IntAsChar() {
+    return '0' + Int(0,9);
+}
+
+std::string RandomHelper::IntString(int length) {
+    std::string word(length, ' ');
+    for(int i = 0 ; i < length ; i++) {
+        word[i] = IntAsChar();
+    }
+    return word;
+}
+

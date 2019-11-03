@@ -8,8 +8,8 @@
 Transaction *TransactionTestGenerator::generate() {
 
     std::string date = RandomHelper::Date(true);
-    std::string iban = RandomHelper::Word(8);
-    std::string iban2 = RandomHelper::Word(8);
+    std::string iban = RandomHelper::IBAN();
+    std::string iban2 = RandomHelper::IBAN();
     std::string valuta = "EUR";
     long balance = RandomHelper::Long();
     long mutationAmount = RandomHelper::Long();

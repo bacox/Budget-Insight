@@ -23,15 +23,12 @@ int main(int argc, char *argv[]){
     }
 
 
-    std::cout << "Generating new transaction" << std::endl;
-    Transaction * t1 = TransactionTestGenerator::generate();
-    std::cout << (*t1) << std::endl;
+    std::cout << "Generating new transactions" << std::endl;
+//    Transaction * t1 = TransactionTestGenerator::generate();
+//    std::cout << (*t1) << std::endl;
+    for( int i =0; i < 50; i++) {
+        std::cout <<  (*TransactionTestGenerator::generate()) << std::endl;
 
-
-    for( int i =0; i < 10; i++) {
-        std::cout << "Word upper random " << RandomHelper::WordUpper() << std::endl;
-        std::cout << "Word lower random " << RandomHelper::WordLower() << std::endl;
-        std::cout << "Word capitalize random " << RandomHelper::WordCapitalize() << std::endl;
     }
-    return 0;
+        return 0;
 }
