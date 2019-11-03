@@ -40,13 +40,19 @@ long RandomHelper::Long() {
     return rand();
 }
 
-char RandomHelper::Char() {
-    int interCharOffset = 7;
-    int doubleCharRange = 26*2;
-    int charValue = Int(0, doubleCharRange);
+char RandomHelper::Char(int range, int interOffset, char start) {
+    int charValue = Int(0, range);
     if(charValue > 25)
-        charValue += interCharOffset;
-    return 'A' + charValue;
+        charValue += interOffset;
+    return start + charValue;
+}
+
+char RandomHelper::CharUpper() {
+    return Char(26);
+}
+
+char RandomHelper::CharLower() {
+    return Char(26, 0, 'a');
 }
 
 std::string RandomHelper::Word(int length) {
@@ -74,3 +80,31 @@ std::string RandomHelper::Date(bool padding) {
     return date.str();
 
 }
+
+std::string RandomHelper::WordUpper(int length) {
+    std::string word(length, ' ');
+    for(int i = 0 ; i < length ; i++) {
+        word[i] = CharUpper();
+    }
+    return word;
+}
+
+std::string RandomHelper::WordLower(int length) {
+    std::string word(length, ' ');
+    for(int i = 0 ; i < length ; i++) {
+        word[i] = CharLower();
+    }
+    return word;
+}
+
+std::string RandomHelper::WordCapitalize(int length) {
+    std::string word(length, ' ');
+    for(int i = 0 ; i < length ; i++) {
+        if(i == 0)
+            word[i] = CharUpper();
+        else
+            word[i] = CharLower();
+    }
+    return word;
+}
+

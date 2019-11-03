@@ -16,9 +16,15 @@ public:
     static float Float();
     static double Double();
     static long Long();
-    static char Char();
+    static char Char(int range = 52, int interOffset = 7, char start = 'A');
+    static char CharUpper();
+    static char CharLower();
     static std::string Word(int length = 6);
+    static std::string WordUpper(int length = 6);
+    static std::string WordLower(int length = 6);
+    static std::string WordCapitalize(int length = 6);
     static std::string Date(bool padding = true);
+
 };
 
 

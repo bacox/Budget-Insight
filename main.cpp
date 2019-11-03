@@ -27,5 +27,11 @@ int main(int argc, char *argv[]){
     Transaction * t1 = TransactionTestGenerator::generate();
     std::cout << (*t1) << std::endl;
 
+
+    for( int i =0; i < 10; i++) {
+        std::cout << "Word upper random " << RandomHelper::WordUpper() << std::endl;
+        std::cout << "Word lower random " << RandomHelper::WordLower() << std::endl;
+        std::cout << "Word capitalize random " << RandomHelper::WordCapitalize() << std::endl;
+    }
     return 0;
 }
