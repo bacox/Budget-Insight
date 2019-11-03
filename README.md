@@ -9,3 +9,8 @@ cd Catch2
 cmake -Bbuild -H. -DBUILD_TESTING=OFF
 sudo cmake --build build/ --target install
 ```
+
+Install libsqlite3-dev
+```
+sudo apt-get install libsqlite3-dev
+```
