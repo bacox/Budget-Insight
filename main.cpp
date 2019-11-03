@@ -4,6 +4,8 @@
 
 #include<iostream>
 #include "RandomHelper.h"
+#include "Transaction.h"
+#include "TransactionTestGenerator.h"
 
 int main(int argc, char *argv[]){
     std::cout << "A random int: " << RandomHelper::Int() << std::endl;
@@ -19,5 +21,11 @@ int main(int argc, char *argv[]){
     for( int i =0; i < 50; i++) {
         std::cout << "Date random " << RandomHelper::Date() << std::endl;
     }
+
+
+    std::cout << "Generating new transaction" << std::endl;
+    Transaction * t1 = TransactionTestGenerator::generate();
+    std::cout << (*t1) << std::endl;
+
     return 0;
 }
