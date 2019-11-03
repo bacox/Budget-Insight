@@ -22,10 +22,10 @@ public:
     void emptyTransactiontable();
     void deleteTransactionTable();
 
-    void insertTransaction(Transaction &t);
+    int insertTransaction(Transaction &t);
 
     std::vector<Transaction> getAllTransactions();
-
+    Transaction getTransactionById(std::string id);
 
     virtual ~Database();
 //    ("test.db3", SQLite::OPEN_READWRITE|SQLite::OPEN_CREATE);

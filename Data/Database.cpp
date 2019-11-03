@@ -39,7 +39,7 @@ void Database::deleteTransactionTable() {
     db.exec("DROP TABLE IF EXISTS " + TRANSACTIONTABLE);
 }
 
-void Database::insertTransaction(Transaction &t) {
+int Database::insertTransaction(Transaction &t) {
     // first row
     std::stringstream values;
     values << "\"" << t.getId() << "\"";
@@ -55,6 +55,7 @@ void Database::insertTransaction(Transaction &t) {
     std::string queryString = "INSERT INTO " + TRANSACTIONTABLE + " VALUES (" + values.str() + ")";
     int nb = db.exec(queryString);
 //    std::cout << queryString << ", returned " << nb << std::endl;
+    return nb;
 }
 
 std::vector<Transaction> Database::getAllTransactions() {
@@ -76,4 +77,26 @@ std::vector<Transaction> Database::getAllTransactions() {
         transactions.push_back(transaction);
     }
     return transactions;
+}
+
+Transaction Database::getTransactionById(std::string id) {
+    std::string queryString = "SELECT * FROM " + TRANSACTIONTABLE + " WHERE id=\"" + id + "\"";
+    std::cout << "Querystring : " << queryString << std::endl;
+
+    SQLite::Statement   query(db, queryString);
+    if (query.executeStep())
+    {
+        std::string id = query.getColumn(0);
+        std::string date = query.getColumn(1);
+        std::string iban = query.getColumn(2);
+        std::string iban2 = query.getColumn(3);
+        std::string valuta = query.getColumn(4);
+        long mutationBalance = query.getColumn(5);
+        long mutationAmount = query.getColumn(6);
+        std::string journalDate = query.getColumn(7);
+        std::string internalCode = query.getColumn(8);
+        std::string globalCode = query.getColumn(9);
+        return Transaction(date, iban, iban2, valuta, mutationBalance, mutationAmount, journalDate, internalCode, globalCode, id);
+    }
+    return Transaction("","","","",0,0,"","","","");
 }

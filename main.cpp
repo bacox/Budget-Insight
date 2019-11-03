@@ -66,6 +66,15 @@ int main(int argc, char *argv[]){
 
     db.createTransactionTable();
 
+    std::cout << "Generate and retreive single specific transaction" << std::endl;
+    Transaction * t = TransactionTestGenerator::generate();
+    std::cout << "Generated transaction :: id=" << t->getId() << std::endl;
+    int res = db.insertTransaction(*t);
+    std::cout << "Insert succesful ? " << res << std::endl;
+    Transaction queryOutput = db.getTransactionById(t->getId());
+    std::cout << "Retrieved transaction :: id=" << t->getId() << std::endl;
+
+
 
     std::cout << "Generating new transactions" << std::endl;
 //    Transaction * t1 = TransactionTestGenerator::generate();
