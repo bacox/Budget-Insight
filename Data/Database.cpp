@@ -134,3 +134,23 @@ std::string Database::transactionValuesTypesUtil(Transaction &t) {
     values << ", " << "globalCode=\"" << t.getGlobalCode() << "\"";
     return values.str();
 }
+
+bool Database::tableExists(std::string tableName) {
+    std::string queryString = "SELECT name FROM sqlite_master WHERE type='table' AND name='" + tableName + "'";
+//    int nb = db.exec(queryString);
+    SQLite::Statement query(db, queryString);
+    if(query.executeStep())
+        return true;
+    return false;
+}
+
+bool Database::transactionExists(Transaction &t) {
+    return transactionExists(t.getId());
+}
+
+bool Database::transactionExists(std::string id) {
+    std::string queryString = "SELECT EXISTS(SELECT 1 FROM " + TRANSACTIONTABLE+ " WHERE id=\"" + id + "\" LIMIT 1)";
+
+    int exists = db.execAndGet(queryString);
+    return exists;
+}

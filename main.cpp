@@ -91,6 +91,12 @@ int main(int argc, char *argv[]){
         db.insertTransaction(*t1);
     }
 
+    std::cout << "Check if table 'transactions' exists ? " << db.tableExists("transactions") << std::endl;
+    std::cout << "Check if table 'non_table_bx' exists ? " << db.tableExists("non_table_bx") << std::endl;
+
+    std::cout << "Check if existing transaction exists ? " << db.transactionExists(queryOutputUpdated) << std::endl;
+    std::cout << "Check if non-existing transaction exists ? " << db.transactionExists("nonexistingid") << std::endl;
+
     std::vector<Transaction> transactions = db.getAllTransactions();
     db.emptyTransactiontable();
     db.deleteTransactionTable();

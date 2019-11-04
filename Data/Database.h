@@ -25,6 +25,11 @@ public:
     void emptyTransactiontable();
     void deleteTransactionTable();
 
+    bool tableExists(std::string tableName);
+
+    bool transactionExists(Transaction &t);
+    bool transactionExists(std::string id);
+
     int insertTransaction(Transaction &t);
 
     int updateTransaction(Transaction &t);
