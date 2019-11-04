@@ -3,7 +3,6 @@
 //
 
 #include "TransactionTestGenerator.h"
-#include "RandomHelper.h"
 
 Transaction *TransactionTestGenerator::generate() {
 

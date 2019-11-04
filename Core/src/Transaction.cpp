@@ -2,7 +2,7 @@
 // Created by bacox on 02-11-19.
 //
 
-#include "Transaction.h"
+#include "../include/Transaction.h"
 
 Transaction::Transaction(const std::string &date, const std::string &banknumber, const std::string &banknumberAgainst,
                          const std::string &valuta, long balanceBeforeMutation, long mutationAmount,

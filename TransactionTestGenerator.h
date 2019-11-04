@@ -6,7 +6,8 @@
 #define BUDGET_INSIGHT_TRANSACTIONTESTGENERATOR_H
 
 
-#include "Transaction.h"
+#include <Transaction.h>
+#include "RandomHelper.h"
 
 class TransactionTestGenerator {
 public:

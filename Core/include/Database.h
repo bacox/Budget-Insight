@@ -4,9 +4,9 @@
 
 #ifndef BUDGET_INSIGHT_DATABASE_H
 #define BUDGET_INSIGHT_DATABASE_H
-#include <SQLiteCpp/SQLiteCpp.h>
 #include <vector>
-#include "../Transaction.h"
+#include <SQLiteCpp/SQLiteCpp.h>
+#include "Transaction.h"
 
 
 class Database {

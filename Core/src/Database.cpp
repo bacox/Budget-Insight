@@ -4,7 +4,7 @@
 
 #include <iostream>
 #include <sstream>
-#include "Database.h"
+#include "../include/Database.h"
 
 Database::Database() :db(databaseFile, SQLite::OPEN_READWRITE|SQLite::OPEN_CREATE){
     ;
