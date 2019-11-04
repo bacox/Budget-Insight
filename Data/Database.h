@@ -17,6 +17,8 @@ private:
 
     std::string transactionValuesUtil(Transaction &t);
     std::string transactionValuesTypesUtil(Transaction &t);
+    int tableSize(std::string tableName);
+
 
 public:
     Database();
@@ -35,6 +37,8 @@ public:
     int updateTransaction(Transaction &t);
 
     int deleteTransaction(std::string id);
+
+    int numberOfTransactions();
 
     std::vector<Transaction> getAllTransactions();
     Transaction getTransactionById(std::string id);

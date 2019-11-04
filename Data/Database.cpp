@@ -154,3 +154,13 @@ bool Database::transactionExists(std::string id) {
     int exists = db.execAndGet(queryString);
     return exists;
 }
+
+int Database::tableSize(std::string tableName) {
+    if(tableExists(tableName))
+        return (int)  db.execAndGet("SELECT Count(*) FROM " + tableName);
+    return 0;
+}
+
+int Database::numberOfTransactions() {
+    return tableSize(TRANSACTIONTABLE);
+}

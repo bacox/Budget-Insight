@@ -85,10 +85,11 @@ int main(int argc, char *argv[]){
     std::cout << "Generating new transactions" << std::endl;
 //    Transaction * t1 = TransactionTestGenerator::generate();
 //    std::cout << (*t1) << std::endl;
-    for( int i =0; i < 10; i++) {
+    for( int i =0; i < 20; i++) {
         Transaction * t1 = TransactionTestGenerator::generate();
 //        std::cout <<  (*t1) << std::endl;
         db.insertTransaction(*t1);
+        std::cout << "Size of the transaction table ? " << db.numberOfTransactions() << std::endl;
     }
 
     std::cout << "Check if table 'transactions' exists ? " << db.tableExists("transactions") << std::endl;
