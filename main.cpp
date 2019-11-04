@@ -72,8 +72,14 @@ int main(int argc, char *argv[]){
     int res = db.insertTransaction(*t);
     std::cout << "Insert succesful ? " << res << std::endl;
     Transaction queryOutput = db.getTransactionById(t->getId());
-    std::cout << "Retrieved transaction :: id=" << t->getId() << std::endl;
+    std::cout << "Retrieved transaction :: id=" << queryOutput.getId() << std::endl;
 
+
+    queryOutput.setInternalCode("BACOX");
+    queryOutput.setId("BACOX");
+    std::cout << "Update result : " << db.updateTransaction(queryOutput) << std::endl;
+    Transaction queryOutputUpdated = db.getTransactionById(t->getId());
+    std::cout << "Retrieved transaction :: id=" << queryOutputUpdated.getId() << " and internal code = " << queryOutputUpdated.getInternalCode() << std::endl;
 
 
     std::cout << "Generating new transactions" << std::endl;

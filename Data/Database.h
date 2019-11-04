@@ -15,6 +15,9 @@ private:
     SQLite::Database db;
     const std::string TRANSACTIONTABLE = "transactions";
 
+    std::string transactionValuesUtil(Transaction &t);
+    std::string transactionValuesTypesUtil(Transaction &t);
+
 public:
     Database();
 
@@ -23,6 +26,10 @@ public:
     void deleteTransactionTable();
 
     int insertTransaction(Transaction &t);
+
+    int updateTransaction(Transaction &t);
+
+    int deleteTransaction(std::string id);
 
     std::vector<Transaction> getAllTransactions();
     Transaction getTransactionById(std::string id);

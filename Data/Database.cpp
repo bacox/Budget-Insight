@@ -41,18 +41,8 @@ void Database::deleteTransactionTable() {
 
 int Database::insertTransaction(Transaction &t) {
     // first row
-    std::stringstream values;
-    values << "\"" << t.getId() << "\"";
-    values << ", " << "\"" << t.getDate() << "\"";
-    values << ", " << "\"" << t.getBanknumber() << "\"";
-    values << ", " << "\"" << t.getBanknumberAgainst() << "\"";
-    values << ", " << "\"" << t.getValuta()  << "\"";
-    values << ", " << "\"" << t.getBalanceBeforeMutation() << "\"";
-    values << ", " << "\"" << t.getMutationAmount() << "\"";
-    values << ", " << "\"" << t.getJournalDate() << "\"";
-    values << ", " << "\"" << t.getInternalCode() << "\"";
-    values << ", " << "\"" << t.getGlobalCode() << "\"";
-    std::string queryString = "INSERT INTO " + TRANSACTIONTABLE + " VALUES (" + values.str() + ")";
+    std::string values = transactionValuesUtil(t);
+    std::string queryString = "INSERT INTO " + TRANSACTIONTABLE + " VALUES (" + values + ")";
     int nb = db.exec(queryString);
 //    std::cout << queryString << ", returned " << nb << std::endl;
     return nb;
@@ -99,4 +89,48 @@ Transaction Database::getTransactionById(std::string id) {
         return Transaction(date, iban, iban2, valuta, mutationBalance, mutationAmount, journalDate, internalCode, globalCode, id);
     }
     return Transaction("","","","",0,0,"","","","");
+}
+
+int Database::updateTransaction(Transaction &t) {
+    std::string values = transactionValuesTypesUtil(t);
+    std::string queryString = "UPDATE " + TRANSACTIONTABLE + " SET " + values + " WHERE id='"+ t.getId()+ "'";
+    std::cout << "Doing query >> " << queryString << std::endl;
+    int nb = db.exec(queryString);
+    return nb;
+}
+
+int Database::deleteTransaction(std::string id) {
+    std::string queryString = "DELETE FROM " + TRANSACTIONTABLE + " WHERE id=\"" + id + "\"";
+    int nb = db.exec(queryString);
+    return nb;
+}
+
+std::string Database::transactionValuesUtil(Transaction &t) {
+    std::stringstream values;
+    values << "\"" << t.getId() << "\"";
+    values << ", " << "\"" << t.getDate() << "\"";
+    values << ", " << "\"" << t.getBanknumber() << "\"";
+    values << ", " << "\"" << t.getBanknumberAgainst() << "\"";
+    values << ", " << "\"" << t.getValuta()  << "\"";
+    values << ", " << "\"" << t.getBalanceBeforeMutation() << "\"";
+    values << ", " << "\"" << t.getMutationAmount() << "\"";
+    values << ", " << "\"" << t.getJournalDate() << "\"";
+    values << ", " << "\"" << t.getInternalCode() << "\"";
+    values << ", " << "\"" << t.getGlobalCode() << "\"";
+    return values.str();
+}
+
+std::string Database::transactionValuesTypesUtil(Transaction &t) {
+    std::stringstream values;
+    values << "id=\"" << t.getId() << "\"";
+    values << ", " << "date=\"" << t.getDate() << "\"";
+    values << ", " << "iban=\"" << t.getBanknumber() << "\"";
+    values << ", " << "ibanAgainst=\"" << t.getBanknumberAgainst() << "\"";
+    values << ", " << "valuta=\"" << t.getValuta()  << "\"";
+    values << ", " << "balance=\"" << t.getBalanceBeforeMutation() << "\"";
+    values << ", " << "mutationAmount=\"" << t.getMutationAmount() << "\"";
+    values << ", " << "journalDate=\"" << t.getJournalDate() << "\"";
+    values << ", " << "internalCode=\"" << t.getInternalCode() << "\"";
+    values << ", " << "globalCode=\"" << t.getGlobalCode() << "\"";
+    return values.str();
 }
