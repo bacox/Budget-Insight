@@ -10,12 +10,13 @@ add_subdirectory(Core)
 include_directories(
         Code/include
 )
+
 add_executable(budget-insight
+        Util/src/RandomHelper.cpp
+        Util/src/TransactionTestGenerator.cpp
+        Util/include/RandomHelper.h
+        Util/include/TransactionTestGenerator.h
         main.cpp
-        RandomHelper.cpp
-        RandomHelper.h
-        TransactionTestGenerator.cpp
-        TransactionTestGenerator.h
         )
 target_link_libraries(budget-insight
         Catch2::Catch2

@@ -27,6 +27,7 @@ void Database::createTransactionTable() {
     tableItems += " , journalDate TEXT";
     tableItems += " , internalCode TEXT";
     tableItems += " , globalCode TEXT";
+    tableItems += " , description TEXT";
 
     db.exec("CREATE TABLE " + TRANSACTIONTABLE + " (" + tableItems + ")");
 }
@@ -63,7 +64,9 @@ std::vector<Transaction> Database::getAllTransactions() {
         std::string journalDate = query.getColumn(7);
         std::string internalCode = query.getColumn(8);
         std::string globalCode = query.getColumn(9);
+        std::string description = query.getColumn(10);
         Transaction transaction(date, iban, iban2, valuta, mutationBalance, mutationAmount, journalDate, internalCode, globalCode, id);
+        transaction.setDescription(description);
         transactions.push_back(transaction);
     }
     return transactions;
@@ -86,7 +89,10 @@ Transaction Database::getTransactionById(std::string id) {
         std::string journalDate = query.getColumn(7);
         std::string internalCode = query.getColumn(8);
         std::string globalCode = query.getColumn(9);
-        return Transaction(date, iban, iban2, valuta, mutationBalance, mutationAmount, journalDate, internalCode, globalCode, id);
+        std::string description = query.getColumn(10);
+        Transaction t(date, iban, iban2, valuta, mutationBalance, mutationAmount, journalDate, internalCode, globalCode, id);
+        t.setDescription(description);
+        return t;
     }
     return Transaction("","","","",0,0,"","","","");
 }
@@ -117,6 +123,7 @@ std::string Database::transactionValuesUtil(Transaction &t) {
     values << ", " << "\"" << t.getJournalDate() << "\"";
     values << ", " << "\"" << t.getInternalCode() << "\"";
     values << ", " << "\"" << t.getGlobalCode() << "\"";
+    values << ", " << "\"" << t.getDescription() << "\"";
     return values.str();
 }
 
@@ -132,6 +139,7 @@ std::string Database::transactionValuesTypesUtil(Transaction &t) {
     values << ", " << "journalDate=\"" << t.getJournalDate() << "\"";
     values << ", " << "internalCode=\"" << t.getInternalCode() << "\"";
     values << ", " << "globalCode=\"" << t.getGlobalCode() << "\"";
+    values << ", " << "description=\"" << t.getDescription() << "\"";
     return values.str();
 }
 
