@@ -17,7 +17,7 @@ include_directories(
 add_library(budget-insight-core SHARED
         src/Database.cpp
         src/Transaction.cpp
-        src/Importer.cpp include/Importer.h)
+        src/Importer.cpp include/Importer.h src/TransactionApi.cpp include/TransactionApi.h)
 
 # include the local include directory for this target only
 target_include_directories(budget-insight-core PUBLIC

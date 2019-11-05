@@ -6,6 +6,11 @@ set (CMAKE_CXX_STANDARD 17)
 set(CMAKE_BUILD_TYPE Debug)
 find_package(Catch2 REQUIRED)
 
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/target/lib)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/target/lib)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/target/bin)
+
+
 add_subdirectory(Core)
 include_directories(
         Code/include

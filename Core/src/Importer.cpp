@@ -41,8 +41,11 @@ Transaction Importer::parseStringToTransaction(std::string line, char delimiter)
     std::string iban2 = result[2];
     std::string valuta = "EUR";
 //    std::stod
-    long balance = std::stol(result[8]);
-    long mutationAmount = std::stol(result[10]);
+//    long balance = std::stol(result[8]);
+    long balance = (long)(std::stod(result[8]) * 100);
+//    long mutationAmount = std::stol(result[10]);
+//    long mutationAmount = std::stod(result[10]);
+    long mutationAmount = (long)(std::stod(result[10]) * 100);
     std::string journalDate = result[11];
     std::string icode = result[13];
     std::string gcode = result[14];

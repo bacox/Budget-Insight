@@ -10,7 +10,7 @@
 
 
 int main(int argc, char *argv[]){
-    Database db;
+    Database &db = Database::getInstance();
 //
     db.createTransactionTable();
 //
@@ -52,7 +52,7 @@ int main(int argc, char *argv[]){
 //    }
 
     Importer import;
-    std::vector<Transaction> transactions = import.csv("data.csv");
+    std::vector<Transaction> transactions = import.csv("../../data.csv");
     for( Transaction t : transactions) {
         std::cout << t << std::endl;
         db.insertTransaction(t);

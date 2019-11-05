@@ -6,13 +6,11 @@
 #include <sstream>
 #include "../include/Database.h"
 
-Database::Database() :db(databaseFile, SQLite::OPEN_READWRITE|SQLite::OPEN_CREATE){
-    ;
-}
-
-Database::~Database() {
-
-}
+Database::Database() :db(databaseFile, SQLite::OPEN_READWRITE|SQLite::OPEN_CREATE){;}
+//
+//Database::~Database() {
+//
+//}
 
 void Database::createTransactionTable() {
     // Create a new table with an explicit "id" column aliasing the underlying rowid

@@ -21,7 +21,32 @@ private:
 
 
 public:
-    Database();
+    static Database& getInstance()
+    {
+        static Database instance; // Guaranteed to be destroyed.
+        // Instantiated on first use.
+        return instance;
+    }
+private:
+    Database();                   // Constructor? (the {} brackets) are needed here.
+
+    // C++ 11
+    // =======
+    // We can use the better technique of deleting the methods
+    // we don't want.
+public:
+    Database(Database const&)               = delete;
+    void operator=(Database const&)  = delete;
+
+    // Note: Scott Meyers mentions in his Effective Modern
+    //       C++ book, that deleted functions should generally
+    //       be public as it results in better error messages
+    //       due to the compilers behavior to check accessibility
+    //       before deleted status
+
+
+public:
+//    Database();
 
     void createTransactionTable();
     void emptyTransactiontable();
@@ -43,7 +68,7 @@ public:
     std::vector<Transaction> getAllTransactions();
     Transaction getTransactionById(std::string id);
 
-    virtual ~Database();
+//    virtual ~Database();
 //    ("test.db3", SQLite::OPEN_READWRITE|SQLite::OPEN_CREATE);
 };
 
