@@ -10,6 +10,7 @@
 #include "Transaction.h"
 
 class TransactionApi {
+public:
     static int count();
     static std::vector<Transaction> getAll();
     static Transaction getById(std::string id);
@@ -19,6 +20,7 @@ class TransactionApi {
     static Transaction create(Transaction &t);
     static bool exists(Transaction &t);
     static bool exists(std::string id);
+    static bool removeAll();
 };
 
 

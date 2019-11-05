@@ -13,14 +13,14 @@ class Database {
 private:
     std::string databaseFile = "storage.db3";
     SQLite::Database db;
-    const std::string TRANSACTIONTABLE = "transactions";
-
     std::string transactionValuesUtil(Transaction &t);
+
     std::string transactionValuesTypesUtil(Transaction &t);
     int tableSize(std::string tableName);
-
-
 public:
+
+
+    static const std::string TRANSACTIONTABLE;
     static Database& getInstance()
     {
         static Database instance; // Guaranteed to be destroyed.
@@ -44,6 +44,8 @@ public:
     //       due to the compilers behavior to check accessibility
     //       before deleted status
 
+private:
+    void init();
 
 public:
 //    Database();

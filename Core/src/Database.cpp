@@ -6,11 +6,14 @@
 #include <sstream>
 #include "../include/Database.h"
 
-Database::Database() :db(databaseFile, SQLite::OPEN_READWRITE|SQLite::OPEN_CREATE){;}
+Database::Database() :db(databaseFile, SQLite::OPEN_READWRITE|SQLite::OPEN_CREATE){
+    init();
+}
 //
 //Database::~Database() {
 //
 //}
+const std::string Database::TRANSACTIONTABLE = "transactions";
 
 void Database::createTransactionTable() {
     // Create a new table with an explicit "id" column aliasing the underlying rowid
@@ -72,7 +75,7 @@ std::vector<Transaction> Database::getAllTransactions() {
 
 Transaction Database::getTransactionById(std::string id) {
     std::string queryString = "SELECT * FROM " + TRANSACTIONTABLE + " WHERE id=\"" + id + "\"";
-    std::cout << "Querystring : " << queryString << std::endl;
+//    std::cout << "Querystring : " << queryString << std::endl;
 
     SQLite::Statement   query(db, queryString);
     if (query.executeStep())
@@ -98,7 +101,7 @@ Transaction Database::getTransactionById(std::string id) {
 int Database::updateTransaction(Transaction &t) {
     std::string values = transactionValuesTypesUtil(t);
     std::string queryString = "UPDATE " + TRANSACTIONTABLE + " SET " + values + " WHERE id='"+ t.getId()+ "'";
-    std::cout << "Doing query >> " << queryString << std::endl;
+//    std::cout << "Doing query >> " << queryString << std::endl;
     int nb = db.exec(queryString);
     return nb;
 }
@@ -169,4 +172,10 @@ int Database::tableSize(std::string tableName) {
 
 int Database::numberOfTransactions() {
     return tableSize(TRANSACTIONTABLE);
+}
+
+void Database::init() {
+    if(tableExists(TRANSACTIONTABLE))
+        return;
+    createTransactionTable();
 }
