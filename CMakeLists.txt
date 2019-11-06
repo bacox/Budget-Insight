@@ -15,6 +15,11 @@ add_subdirectory(Core)
 include_directories(
         Code/include
 )
+add_subdirectory(Server)
+include_directories(
+        Server/include
+)
+include_directories(Server/thirdparty/mongoose-cpp)
 
 add_executable(budget-insight
         Util/src/RandomHelper.cpp
@@ -29,4 +34,6 @@ target_link_libraries(budget-insight
         sqlite3
         pthread
         dl
-        budget-insight-core)
+        budget-insight-core
+        budget-insight-server
+        )
