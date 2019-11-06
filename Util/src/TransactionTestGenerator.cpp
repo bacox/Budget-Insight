@@ -2,8 +2,7 @@
 // Created by bacox on 03-11-19.
 //
 
-#include "TransactionTestGenerator.h"
-#include "RandomHelper.h"
+#include "../include/TransactionTestGenerator.h"
 
 Transaction *TransactionTestGenerator::generate() {
 

@@ -4,15 +4,16 @@
 
 #include <iostream>
 #include <sstream>
-#include "Database.h"
+#include "../include/Database.h"
 
 Database::Database() :db(databaseFile, SQLite::OPEN_READWRITE|SQLite::OPEN_CREATE){
-    ;
+    init();
 }
-
-Database::~Database() {
-
-}
+//
+//Database::~Database() {
+//
+//}
+const std::string Database::TRANSACTIONTABLE = "transactions";
 
 void Database::createTransactionTable() {
     // Create a new table with an explicit "id" column aliasing the underlying rowid
@@ -27,6 +28,7 @@ void Database::createTransactionTable() {
     tableItems += " , journalDate TEXT";
     tableItems += " , internalCode TEXT";
     tableItems += " , globalCode TEXT";
+    tableItems += " , description TEXT";
 
     db.exec("CREATE TABLE " + TRANSACTIONTABLE + " (" + tableItems + ")");
 }
@@ -63,7 +65,9 @@ std::vector<Transaction> Database::getAllTransactions() {
         std::string journalDate = query.getColumn(7);
         std::string internalCode = query.getColumn(8);
         std::string globalCode = query.getColumn(9);
+        std::string description = query.getColumn(10);
         Transaction transaction(date, iban, iban2, valuta, mutationBalance, mutationAmount, journalDate, internalCode, globalCode, id);
+        transaction.setDescription(description);
         transactions.push_back(transaction);
     }
     return transactions;
@@ -71,7 +75,7 @@ std::vector<Transaction> Database::getAllTransactions() {
 
 Transaction Database::getTransactionById(std::string id) {
     std::string queryString = "SELECT * FROM " + TRANSACTIONTABLE + " WHERE id=\"" + id + "\"";
-    std::cout << "Querystring : " << queryString << std::endl;
+//    std::cout << "Querystring : " << queryString << std::endl;
 
     SQLite::Statement   query(db, queryString);
     if (query.executeStep())
@@ -86,7 +90,10 @@ Transaction Database::getTransactionById(std::string id) {
         std::string journalDate = query.getColumn(7);
         std::string internalCode = query.getColumn(8);
         std::string globalCode = query.getColumn(9);
-        return Transaction(date, iban, iban2, valuta, mutationBalance, mutationAmount, journalDate, internalCode, globalCode, id);
+        std::string description = query.getColumn(10);
+        Transaction t(date, iban, iban2, valuta, mutationBalance, mutationAmount, journalDate, internalCode, globalCode, id);
+        t.setDescription(description);
+        return t;
     }
     return Transaction("","","","",0,0,"","","","");
 }
@@ -94,7 +101,7 @@ Transaction Database::getTransactionById(std::string id) {
 int Database::updateTransaction(Transaction &t) {
     std::string values = transactionValuesTypesUtil(t);
     std::string queryString = "UPDATE " + TRANSACTIONTABLE + " SET " + values + " WHERE id='"+ t.getId()+ "'";
-    std::cout << "Doing query >> " << queryString << std::endl;
+//    std::cout << "Doing query >> " << queryString << std::endl;
     int nb = db.exec(queryString);
     return nb;
 }
@@ -117,6 +124,7 @@ std::string Database::transactionValuesUtil(Transaction &t) {
     values << ", " << "\"" << t.getJournalDate() << "\"";
     values << ", " << "\"" << t.getInternalCode() << "\"";
     values << ", " << "\"" << t.getGlobalCode() << "\"";
+    values << ", " << "\"" << t.getDescription() << "\"";
     return values.str();
 }
 
@@ -132,5 +140,42 @@ std::string Database::transactionValuesTypesUtil(Transaction &t) {
     values << ", " << "journalDate=\"" << t.getJournalDate() << "\"";
     values << ", " << "internalCode=\"" << t.getInternalCode() << "\"";
     values << ", " << "globalCode=\"" << t.getGlobalCode() << "\"";
+    values << ", " << "description=\"" << t.getDescription() << "\"";
     return values.str();
+}
+
+bool Database::tableExists(std::string tableName) {
+    std::string queryString = "SELECT name FROM sqlite_master WHERE type='table' AND name='" + tableName + "'";
+//    int nb = db.exec(queryString);
+    SQLite::Statement query(db, queryString);
+    if(query.executeStep())
+        return true;
+    return false;
+}
+
+bool Database::transactionExists(Transaction &t) {
+    return transactionExists(t.getId());
+}
+
+bool Database::transactionExists(std::string id) {
+    std::string queryString = "SELECT EXISTS(SELECT 1 FROM " + TRANSACTIONTABLE+ " WHERE id=\"" + id + "\" LIMIT 1)";
+
+    int exists = db.execAndGet(queryString);
+    return exists;
+}
+
+int Database::tableSize(std::string tableName) {
+    if(tableExists(tableName))
+        return (int)  db.execAndGet("SELECT Count(*) FROM " + tableName);
+    return 0;
+}
+
+int Database::numberOfTransactions() {
+    return tableSize(TRANSACTIONTABLE);
+}
+
+void Database::init() {
+    if(tableExists(TRANSACTIONTABLE))
+        return;
+    createTransactionTable();
 }

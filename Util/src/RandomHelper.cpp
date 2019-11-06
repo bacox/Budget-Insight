@@ -2,7 +2,7 @@
 // Created by bacox on 02-11-19.
 //
 
-#include "RandomHelper.h"
+#include "../include/RandomHelper.h"
 
 int RandomHelper::Int() {
     return Int(std::numeric_limits<int>::min(),std::numeric_limits<int>::max());
@@ -31,6 +31,12 @@ float RandomHelper::Float() {
 double RandomHelper::Double() {
     double f = (double)rand();
     return f;
+}
+
+double RandomHelper::Double(int decimals) {
+    int d = pow (10, decimals);
+    double random = Double();
+    return random / d;
 }
 
 long RandomHelper::Long() {

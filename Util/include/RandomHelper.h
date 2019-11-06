@@ -16,6 +16,7 @@ public:
     static std::string IntString(int length = 6);
     static float Float();
     static double Double();
+    static double Double(int decimals);
     static long Long();
     static char Char(int range = 51, int interOffset = 6, char start = 'A');
     static char CharUpper();
