@@ -6,7 +6,8 @@ set (CMAKE_CXX_STANDARD 17)
 set(CMAKE_BUILD_TYPE Debug)
 find_package(Catch2 REQUIRED)
 
-
+add_subdirectory(thirdparty/jsoncpp)
+include_directories(thirdparty/jsoncpp/include)
 add_subdirectory(thirdparty/mongoose-cpp)
 include_directories(thirdparty/mongoose-cpp)
 
@@ -28,4 +29,5 @@ target_link_libraries(budget-insight-server
         pthread
         dl
         budget-insight-core
+        jsoncpp_lib
         mongoose)
