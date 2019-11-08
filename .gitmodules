@@ -1,9 +1,6 @@
 [submodule "thirdparty/SQLiteCpp"]
 	path = Core/thirdparty/SQLiteCpp
 	url = https://github.com/SRombauts/SQLiteCpp.git
-[submodule "Server/thirdparty/mongoose-cpp"]
-	path = Server/thirdparty/mongoose-cpp
-	url = git@github.com:Gregwar/mongoose-cpp.git
 [submodule "Server/thirdparty/jsoncpp"]
 	path = Server/thirdparty/jsoncpp
 	url = https://github.com/open-source-parsers/jsoncpp.git
