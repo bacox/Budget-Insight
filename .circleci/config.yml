@@ -16,8 +16,10 @@ jobs:
           name: Installing Catch2
           command: 'git clone https://github.com/catchorg/Catch2.git && cd Catch2 && cmake -Bbuild -H. -DBUILD_TESTING=OFF && sudo cmake --build build/ --target install'
       - run:
+          name:
+      - run:
           name: Creating Build Files
-          command: 'cmake -H. -Bbuild'
+          command: 'mkdir build && cd build && cmake ..'
       - run:
           name: Creating Binary Files
-          command: 'cmake --build build'
+          command: 'cd build && make'
