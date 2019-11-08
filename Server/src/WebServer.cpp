@@ -26,4 +26,5 @@ void WebServer::stop() {
 
 void WebServer::dumpRoutes() {
     controller.dumpRoutes();
+    jsonController.dumpRoutes();
 }
