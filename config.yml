@@ -1,23 +1,31 @@
-version: 2
+#version: 2
 
+version: 2.1
 jobs:
   build:
     docker:
-      - image: "debian:stretch"
+      - image: "debian:stretch" # the primary container, where your job's commands are run
     steps:
-      - checkout
-      - run:
-          name: Installing SUDO
-          command: 'apt-get update && apt-get install -y sudo && rm -rf /var/lib/apt/lists/*'
-      - run:
-          name: Installing GCC
-          command: 'apt-get update && apt-get install -y gcc g++ libsqlite3-dev cmake git'
-      - run:
-          name: Installing Catch2
-          command: 'git clone https://github.com/catchorg/Catch2.git && cd Catch2 && cmake -Bbuild -H. -DBUILD_TESTING=OFF && sudo cmake --build build/ --target install'
-      - run:
-          name: Creating Build Files
-          command: 'cmake -H. -Bbuild'
-      - run:
-          name: Creating Binary Files
-          command: 'cmake --build build'
+      - checkout # check out the code in the project directory
+      - run: echo "hello world" # run the `echo` command
+#jobs:
+#  build:
+#    docker:
+#      - image: "debian:stretch"
+#    steps:
+#      - checkout
+#      - run:
+#          name: Installing SUDO
+#          command: 'apt-get update && apt-get install -y sudo && rm -rf /var/lib/apt/lists/*'
+#      - run:
+#          name: Installing GCC
+#          command: 'apt-get update && apt-get install -y gcc g++ libsqlite3-dev cmake git'
+#      - run:
+#          name: Installing Catch2
+#          command: 'git clone https://github.com/catchorg/Catch2.git && cd Catch2 && cmake -Bbuild -H. -DBUILD_TESTING=OFF && sudo cmake --build build/ --target install'
+#      - run:
+#          name: Creating Build Files
+#          command: 'cmake -H. -Bbuild'
+#      - run:
+#          name: Creating Binary Files
+#          command: 'cmake --build build'
