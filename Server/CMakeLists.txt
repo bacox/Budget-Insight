@@ -8,6 +8,8 @@ find_package(Catch2 REQUIRED)
 
 add_subdirectory(thirdparty/jsoncpp)
 include_directories(thirdparty/jsoncpp/include)
+#SET(HAS_JSONCPP ON)
+#SET(JSONCPP_DIR thirdparty/jsoncpp)
 add_subdirectory(thirdparty/mongoose-cpp)
 include_directories(thirdparty/mongoose-cpp)
 
@@ -15,7 +17,7 @@ include_directories(thirdparty/mongoose-cpp)
 # add library
 add_library(budget-insight-server SHARED
         src/ApiHandler.cpp
-        src/WebServer.cpp include/WebServer.h)
+        src/WebServer.cpp include/WebServer.h src/MyJsonController.cpp include/MyJsonController.h)
 
 # include the local include directory for this target only
 target_include_directories(budget-insight-server PUBLIC
@@ -29,5 +31,6 @@ target_link_libraries(budget-insight-server
         pthread
         dl
         budget-insight-core
+        mongoose
         jsoncpp_lib
-        mongoose)
+        )

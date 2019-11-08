@@ -8,12 +8,14 @@
 
 #include <mongoose/Server.h>
 #include "ApiHandler.h"
+#include "MyJsonController.h"
 
 class WebServer {
 private:
     Mongoose::Server server;
     int port = 8080;
     ApiHandler controller;
+    MyJsonController jsonController;
 public:
     WebServer(int port);
     void configure();

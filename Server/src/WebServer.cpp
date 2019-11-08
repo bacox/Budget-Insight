@@ -11,6 +11,7 @@ WebServer::WebServer(int port) : port(port), server(port){
 
 void WebServer::configure() {
     server.registerController(&controller);
+    server.registerController(&jsonController);
     server.setOption("document_root", "../../www");
     server.setOption("enable_directory_listing", "yes");
 }

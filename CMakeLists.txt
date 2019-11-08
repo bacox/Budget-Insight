@@ -18,8 +18,10 @@ include_directories(
 add_subdirectory(Server)
 include_directories(
         Server/include
+        Server/thirdparty/mongoose-cpp
+        Server/thirdparty/jsoncpp/include
 )
-include_directories(Server/thirdparty/mongoose-cpp)
+#include_directories(Server/thirdparty/mongoose-cpp)
 
 add_executable(budget-insight
         Util/src/RandomHelper.cpp

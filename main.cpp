@@ -3,11 +3,7 @@
 //
 
 #include<iostream>
-#include <Importer.h>
-#include <TransactionApi.h>
-#include <ApiHandler.h>
 #include <zconf.h>
-#include <mongoose/Server.h>
 #include <WebServer.h>
 
 
