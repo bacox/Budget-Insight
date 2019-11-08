@@ -3,7 +3,6 @@
 //
 
 #include<iostream>
-#include <zconf.h>
 #include <WebServer.h>
 
 
@@ -24,19 +23,12 @@ int main(int argc, char *argv[]){
     std::cout << "Starting webserver on port 8080" << std::endl;
 
     WebServer server(8080);
-//    ApiHandler myController;
-//    Mongoose::Server server(8080);
-//    server.registerController(&myController);
-//    server.setOption("document_root", "../www");
-//    server.setOption("enable_directory_listing", "yes");
-//
-//    server.start();
+
     server.start();
     std::cout << "Running" << std::endl;
     server.dumpRoutes();
-//    myController.dumpRoutes();
     while (1) {
-        usleep(10);
+        ApiHandler::sleep(10);
     }
 
     return 0;
