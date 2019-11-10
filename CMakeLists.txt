@@ -32,8 +32,6 @@ add_executable(budget-insight
         )
 target_link_libraries(budget-insight
         Catch2::Catch2
-        SQLiteCpp
-        sqlite3
         pthread
         dl
         budget-insight-core

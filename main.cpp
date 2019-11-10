@@ -23,7 +23,7 @@ int main(int argc, char *argv[]){
     std::cout << "Starting webserver on port 8080" << std::endl;
 
     WebServer server(8080);
-
+    server.generateFakeData();
     server.start();
     std::cout << "Running" << std::endl;
     server.dumpRoutes();

@@ -22,6 +22,7 @@ public:
     void start();
     void stop();
     void dumpRoutes();
+    void generateFakeData();
 };
 
 

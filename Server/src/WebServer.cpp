@@ -3,6 +3,7 @@
 //
 
 #include "WebServer.h"
+#include "../../Util/include/TransactionTestGenerator.h"
 
 
 WebServer::WebServer(int port) : port(port), server(port){
@@ -27,4 +28,13 @@ void WebServer::stop() {
 void WebServer::dumpRoutes() {
     controller.dumpRoutes();
     jsonController.dumpRoutes();
+}
+
+void WebServer::generateFakeData() {
+    int items = 0;
+    TransactionTestGenerator gen;
+    while(items++ < 50) {
+        Transaction *t = gen.generate();
+        TransactionApi::create((*t));
+    }
 }

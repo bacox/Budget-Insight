@@ -4,6 +4,7 @@
 
 #include "../include/ApiHandler.h"
 void ApiHandler::hello(Mongoose::Request &request, Mongoose::StreamResponse &response) {
+
     response << "Hello " << htmlEntities(request.get("name", "... what's your name ?")) << endl;
 }
 
