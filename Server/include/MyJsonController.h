@@ -21,22 +21,15 @@ private:
 public:
 
     void GetTransactionsById(Request &request, JsonResponse &response);
-
     void GetAllTransactions(Request &request, JsonResponse &response);
-
 
     void setup()
     {
-        // Example of prefix, putting all the urls into "/api"
         setPrefix("/api-v2");
 
-        // Hello demo
-//        addRouteResponse("GET", "/", MyJsonController, hello, JsonResponse);
-//        addRouteResponse("GET", "/hello", MyJsonController, hello, JsonResponse);
         addRouteResponse("GET", "/getById", MyJsonController, GetTransactionsById, JsonResponse);
         addRouteResponse("GET", "/getAll", MyJsonController, GetAllTransactions, JsonResponse);
     }
 };
-
 
 #endif //BUDGET_INSIGHT_JSONCONTROLLER_H
