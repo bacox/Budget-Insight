@@ -7,3 +7,6 @@
 [submodule "Server/thirdparty/mongoose-cpp"]
 	path = Server/thirdparty/mongoose-cpp
 	url = https://github.com/bacox/mongoose-cpp.git
+[submodule "thirdparty/spdlog"]
+	path = thirdparty/spdlog
+	url = https://github.com/gabime/spdlog.git
