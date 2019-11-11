@@ -2,9 +2,6 @@ version: 2
 
 jobs:
   build:
-    branches:
-      ignore:
-        - /feature-.*/
     docker:
       - image: "ubuntu:bionic"
     steps:
