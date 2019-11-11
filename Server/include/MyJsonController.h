@@ -13,39 +13,12 @@
 using namespace Mongoose;
 
 class MyJsonController : public JsonController{
+
+private:
+    void CreateErrorResult(JsonResponse &res, std::string &reason);
+    void CreateSuccessResult(JsonResponse &res, Json::Value &data);
+
 public:
-//    void hello(Request &request, JsonResponse &response)
-//    {
-//        int i;
-//
-//        for (i=0; i<12; i++) {
-//            response["users"][i]["Name"] = "Bob";
-//        }
-//
-//        response["timestamp"] = (int)time(NULL);
-//    }
-//
-//    void GetTransactionsById(Request &request, JsonResponse &response)
-//    {
-//        std::string id = request.get("id", "-1");
-//        Transaction t = TransactionApi::getById(id);
-//
-//        std::cout << "Found the id in the url: " << id << std::endl;
-//        response["transaction"] = Serializer::TransactionToJson(t);
-//    }
-//    void GetAllTransactions(Request &request, JsonResponse &response)
-//    {
-////        Json::Value root;
-//        std::vector<Transaction> list = TransactionApi::getAll();
-//        if(list.size() > 0) {
-//            for (Transaction t: list) {
-//                response.append(Serializer::TransactionToJson(t));
-//            }
-//        } else {
-//            response["data"] = Json::Value(Json::arrayValue);;
-//        }
-//
-//    }
 
     void GetTransactionsById(Request &request, JsonResponse &response);
 
@@ -60,8 +33,8 @@ public:
         // Hello demo
 //        addRouteResponse("GET", "/", MyJsonController, hello, JsonResponse);
 //        addRouteResponse("GET", "/hello", MyJsonController, hello, JsonResponse);
-        addRouteResponse("GET", "/test", MyJsonController, GetTransactionsById, JsonResponse);
-        addRouteResponse("GET", "/all", MyJsonController, GetAllTransactions, JsonResponse);
+        addRouteResponse("GET", "/getById", MyJsonController, GetTransactionsById, JsonResponse);
+        addRouteResponse("GET", "/getAll", MyJsonController, GetAllTransactions, JsonResponse);
     }
 };
 
