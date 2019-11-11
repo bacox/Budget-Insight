@@ -15,6 +15,10 @@ include_directories(
         thirdparty/spdlog/include
 )
 
+SET(WEBSERVER ${CMAKE_BINARY_DIR}/target/www)
+file(MAKE_DIRECTORY ${WEBSERVER})
+configure_file(www/index.html ${WEBSERVER}/index.html COPYONLY)
+
 add_subdirectory(Core)
 include_directories(
         Code/include

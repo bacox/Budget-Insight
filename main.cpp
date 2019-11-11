@@ -19,14 +19,14 @@ int main(int argc, char *argv[]){
 //    }
     Util::Log::Init();
     int port = 8080;
-
+    std::string host = "localhost";
     EN_CORE_INFO("Starting webserver on port {}!", port);
 //    spdlog::info("Starting webserver on port {}!", port);
 
     WebServer server(8080);
     server.generateFakeData();
     server.start();
-    EN_CORE_INFO("Running");
+    EN_INFO("Running at http://{}:{}", host, port);
     server.dumpRoutes();
     while (1) {
         ApiHandler::sleep(10);
