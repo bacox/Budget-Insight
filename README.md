@@ -14,3 +14,10 @@ Install libsqlite3-dev
 ```
 sudo apt-get install libsqlite3-dev
 ```
+
+### To Build
+```
+mkdir -p build && cd build
+cmake .. 
+make
+```
