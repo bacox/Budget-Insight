@@ -32,7 +32,7 @@ void WebServer::dumpRoutes() {
 
 void WebServer::generateFakeData() {
     int items = 0;
-    TransactionTestGenerator gen;
+    Util::TransactionTestGenerator gen;
     while(items++ < 50) {
         Transaction *t = gen.generate();
         TransactionApi::create((*t));

@@ -4,12 +4,12 @@
 
 #include "../include/RandomHelper.h"
 
-int RandomHelper::Int() {
+int Util::RandomHelper::Int() {
     return Int(std::numeric_limits<int>::min(),std::numeric_limits<int>::max());
 }
 
 
-int RandomHelper::Int(int lower, int upper) {
+int Util::RandomHelper::Int(int lower, int upper) {
     std::random_device rd;     // only used once to initialise (seed) engine
     std::mt19937 rng(rd());    // random-number engine used (Mersenne-Twister in this case)
 
@@ -18,50 +18,50 @@ int RandomHelper::Int(int lower, int upper) {
     return uni(rng);
 }
 
-int RandomHelper::Int(int upper) {
+int Util::RandomHelper::Int(int upper) {
     std::uniform_int_distribution<int> uni(0,upper); // guaranteed unbiased
 
 }
 
-float RandomHelper::Float() {
+float Util::RandomHelper::Float() {
     float f = (float)rand();
     return f;
 }
 
-double RandomHelper::Double() {
+double Util::RandomHelper::Double() {
     double f = (double)rand();
     return f;
 }
 
-double RandomHelper::Double(int decimals) {
+double Util::RandomHelper::Double(int decimals) {
     int d = pow (10, decimals);
     double random = Double();
     return random / d;
 }
 
-long RandomHelper::Long() {
+long Util::RandomHelper::Long() {
     if (sizeof(int) < sizeof(long))
         return (static_cast<long>(rand()) << (sizeof(int) * 8)) |
                rand();
     return rand();
 }
 
-char RandomHelper::Char(int range, int interOffset, char start) {
+char Util::RandomHelper::Char(int range, int interOffset, char start) {
     int charValue = Int(0, range);
     if(charValue > 25)
         charValue += interOffset;
     return start + charValue;
 }
 
-char RandomHelper::CharUpper() {
+char Util::RandomHelper::CharUpper() {
     return Char(26);
 }
 
-char RandomHelper::CharLower() {
+char Util::RandomHelper::CharLower() {
     return Char(26, 0, 'a');
 }
 
-std::string RandomHelper::Word(int length) {
+std::string Util::RandomHelper::Word(int length) {
     std::string word(length, ' ');
     for(int i = 0 ; i < length ; i++) {
         word[i] = Char();
@@ -69,7 +69,7 @@ std::string RandomHelper::Word(int length) {
     return word;
 }
 
-std::string RandomHelper::Date(bool padding) {
+std::string Util::RandomHelper::Date(bool padding) {
     int day = Int(1,31);
     std::string dayPadding = "";
     std::string monthPadding = "";
@@ -87,7 +87,7 @@ std::string RandomHelper::Date(bool padding) {
 
 }
 
-std::string RandomHelper::WordUpper(int length) {
+std::string Util::RandomHelper::WordUpper(int length) {
     std::string word(length, ' ');
     for(int i = 0 ; i < length ; i++) {
         word[i] = CharUpper();
@@ -95,7 +95,7 @@ std::string RandomHelper::WordUpper(int length) {
     return word;
 }
 
-std::string RandomHelper::WordLower(int length) {
+std::string Util::RandomHelper::WordLower(int length) {
     std::string word(length, ' ');
     for(int i = 0 ; i < length ; i++) {
         word[i] = CharLower();
@@ -103,7 +103,7 @@ std::string RandomHelper::WordLower(int length) {
     return word;
 }
 
-std::string RandomHelper::WordCapitalize(int length) {
+std::string Util::RandomHelper::WordCapitalize(int length) {
     std::string word(length, ' ');
     for(int i = 0 ; i < length ; i++) {
         if(i == 0)
@@ -114,7 +114,7 @@ std::string RandomHelper::WordCapitalize(int length) {
     return word;
 }
 
-std::string RandomHelper::IBAN() {
+std::string Util::RandomHelper::IBAN() {
     std::stringstream iban;
     iban << "NL";
     iban << 0;
@@ -125,11 +125,11 @@ std::string RandomHelper::IBAN() {
     return iban.str();
 }
 
-char RandomHelper::IntAsChar() {
+char Util::RandomHelper::IntAsChar() {
     return '0' + Int(0,9);
 }
 
-std::string RandomHelper::IntString(int length) {
+std::string Util::RandomHelper::IntString(int length) {
     std::string word(length, ' ');
     for(int i = 0 ; i < length ; i++) {
         word[i] = IntAsChar();

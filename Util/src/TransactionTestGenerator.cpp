@@ -4,7 +4,7 @@
 
 #include "../include/TransactionTestGenerator.h"
 
-Transaction *TransactionTestGenerator::generate() {
+Transaction * Util::TransactionTestGenerator::generate() {
 
     std::string date = RandomHelper::Date(true);
     std::string iban = RandomHelper::IBAN();
