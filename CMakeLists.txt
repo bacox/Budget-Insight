@@ -10,6 +10,10 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/target/lib)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/target/lib)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/target/bin)
 
+add_subdirectory(thirdparty/spdlog)
+include_directories(
+        thirdparty/spdlog/include
+)
 
 add_subdirectory(Core)
 include_directories(
@@ -36,4 +40,5 @@ target_link_libraries(budget-insight
         dl
         budget-insight-core
         budget-insight-server
+        spdlog
         )

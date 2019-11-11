@@ -4,7 +4,7 @@
 
 #include<iostream>
 #include <WebServer.h>
-
+#include "spdlog/spdlog.h"
 
 int main(int argc, char *argv[]){
 
@@ -18,14 +18,13 @@ int main(int argc, char *argv[]){
 //    for( const Transaction& transaction : dbTransactions) {
 //        std::cout << transaction << std::endl;
 //    }
-
-
-    std::cout << "Starting webserver on port 8080" << std::endl;
+    int port = 8080;
+    spdlog::info("Starting webserver on port {}!", port);
 
     WebServer server(8080);
     server.generateFakeData();
     server.start();
-    std::cout << "Running" << std::endl;
+    spdlog::info("Running");
     server.dumpRoutes();
     while (1) {
         ApiHandler::sleep(10);
