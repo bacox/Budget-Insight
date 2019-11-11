@@ -33,7 +33,9 @@ add_executable(budget-insight
         Util/include/RandomHelper.h
         Util/include/TransactionTestGenerator.h
         main.cpp
-        )
+        Util/src/Log.cpp
+        Util/include/Log.h)
+
 target_link_libraries(budget-insight
         Catch2::Catch2
         pthread

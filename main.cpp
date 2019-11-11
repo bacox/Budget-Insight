@@ -4,8 +4,7 @@
 
 #include<iostream>
 #include <WebServer.h>
-#include "spdlog/spdlog.h"
-
+#include "Util/include/Log.h"
 int main(int argc, char *argv[]){
 
 //    Importer import;
@@ -18,13 +17,16 @@ int main(int argc, char *argv[]){
 //    for( const Transaction& transaction : dbTransactions) {
 //        std::cout << transaction << std::endl;
 //    }
+    Util::Log::Init();
     int port = 8080;
-    spdlog::info("Starting webserver on port {}!", port);
+
+    EN_CORE_INFO("Starting webserver on port {}!", port);
+//    spdlog::info("Starting webserver on port {}!", port);
 
     WebServer server(8080);
     server.generateFakeData();
     server.start();
-    spdlog::info("Running");
+    EN_CORE_INFO("Running");
     server.dumpRoutes();
     while (1) {
         ApiHandler::sleep(10);
