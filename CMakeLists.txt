@@ -18,6 +18,9 @@ include_directories(
 SET(WEBSERVER ${CMAKE_BINARY_DIR}/target/www)
 file(MAKE_DIRECTORY ${WEBSERVER})
 configure_file(www/index.html ${WEBSERVER}/index.html COPYONLY)
+configure_file(www/all-transactions.html ${WEBSERVER}/all-transactions.html COPYONLY)
+configure_file(www/by-id.html ${WEBSERVER}/by-id.html COPYONLY)
+configure_file(www/data.csv ${WEBSERVER}/data.csv COPYONLY)
 
 add_subdirectory(Core)
 include_directories(
