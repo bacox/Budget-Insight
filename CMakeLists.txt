@@ -17,10 +17,14 @@ include_directories(
 
 SET(WEBSERVER ${CMAKE_BINARY_DIR}/target/www)
 file(MAKE_DIRECTORY ${WEBSERVER})
-configure_file(www/index.html ${WEBSERVER}/index.html COPYONLY)
-configure_file(www/all-transactions.html ${WEBSERVER}/all-transactions.html COPYONLY)
-configure_file(www/by-id.html ${WEBSERVER}/by-id.html COPYONLY)
-configure_file(www/data.csv ${WEBSERVER}/data.csv COPYONLY)
+
+# Copy all the files in the www folder
+file(GLOB_RECURSE webFiles "www/*.*")
+foreach(webFile ${webFiles})
+    file(RELATIVE_PATH relativeWebFile "${CMAKE_SOURCE_DIR}/www" "${webFile}")
+    MESSAGE(STATUS "The files in the www folder: ${relativeWebFile}")
+    configure_file(www/${relativeWebFile} ${WEBSERVER}/${relativeWebFile} COPYONLY)
+endforeach()
 
 add_subdirectory(Core)
 include_directories(
