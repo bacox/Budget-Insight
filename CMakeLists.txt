@@ -45,6 +45,7 @@ include_directories(
         Server/include
         Server/thirdparty/mongoose-cpp
         Server/thirdparty/jsoncpp/include
+        thirdparty/spdlog/include
 )
 #include_directories(Server/thirdparty/mongoose-cpp)
 
