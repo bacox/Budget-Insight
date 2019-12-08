@@ -10,10 +10,12 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/target/lib)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/target/lib)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/target/bin)
 
+
 add_subdirectory(thirdparty/spdlog)
-include_directories(
-        thirdparty/spdlog/include/spdlog
-)
+find_package(spdlog)
+#include_directories(
+#        thirdparty/spdlog/include/spdlog
+#)
 
 SET(WEBSERVER ${CMAKE_BINARY_DIR}/target/www)
 SET(WEBSERVER_BARE ${CMAKE_BINARY_DIR}/target)

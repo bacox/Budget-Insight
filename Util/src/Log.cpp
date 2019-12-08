@@ -1,8 +1,9 @@
 //
 // Created by bacox on 11-11-19.
 //
-#include <spdlog.h>
-#include <sinks/stdout_color_sinks.h>
+
+#include "spdlog/sinks/stdout_color_sinks.h"
+#include "spdlog/spdlog.h"
 #include "../include/Log.h"
 namespace Util {
     std::shared_ptr<spdlog::logger> Log::s_CoreLogger;

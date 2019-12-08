@@ -6,7 +6,7 @@
 #define BUDGET_INSIGHT_LOG_H
 
 #include <memory>
-#include <logger.h>
+#include "spdlog/logger.h"
 
 namespace Util {
     class Log {
