@@ -12,7 +12,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/target/bin)
 
 add_subdirectory(thirdparty/spdlog)
 include_directories(
-        thirdparty/spdlog/include
+        thirdparty/spdlog/include/spdlog
 )
 
 SET(WEBSERVER ${CMAKE_BINARY_DIR}/target/www)
@@ -45,7 +45,6 @@ include_directories(
         Server/include
         Server/thirdparty/mongoose-cpp
         Server/thirdparty/jsoncpp/include
-        thirdparty/spdlog/include
 )
 #include_directories(Server/thirdparty/mongoose-cpp)
 
