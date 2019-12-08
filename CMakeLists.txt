@@ -16,15 +16,25 @@ include_directories(
 )
 
 SET(WEBSERVER ${CMAKE_BINARY_DIR}/target/www)
-file(MAKE_DIRECTORY ${WEBSERVER})
+SET(WEBSERVER_BARE ${CMAKE_BINARY_DIR}/target)
 
-# Copy all the files in the www folder
-file(GLOB_RECURSE webFiles "www/*.*")
-foreach(webFile ${webFiles})
-    file(RELATIVE_PATH relativeWebFile "${CMAKE_SOURCE_DIR}/www" "${webFile}")
-    MESSAGE(STATUS "The files in the www folder: ${relativeWebFile}")
-    configure_file(www/${relativeWebFile} ${WEBSERVER}/${relativeWebFile} COPYONLY)
-endforeach()
+MESSAGE(STATUS "Copying www files")
+IF (WIN32)
+    MESSAGE(STATUS "Copting www files instead of symlink because of windows")
+    file(MAKE_DIRECTORY ${WEBSERVER})
+    fille(GLOB_RECURSE webFiles "www/*.*")
+    foreach(webFile ${webFiles})
+        file(RELATIVE_PATH relativeWebFile "${CMAKE_SOURCE_DIR}/www" "${webFile}")
+        MESSAGE(STATUS "The files in the www folder: ${relativeWebFile}")
+        configure_file(www/${relativeWebFile} ${WEBSERVER}/${relativeWebFile} COPYONLY)
+    endforeach()
+ELSE()
+    MESSAGE(STATUS "Using symlink for the www files")
+    file(MAKE_DIRECTORY ${WEBSERVER_BARE})
+    execute_process(COMMAND  bash -c "ln -s ${CMAKE_SOURCE_DIR}/www ${WEBSERVER_BARE}")
+ENDIF()
+
+
 
 add_subdirectory(Core)
 include_directories(
