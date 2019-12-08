@@ -3,26 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
-    <style>
-        body {
-            /*text-align: center;*/
-            font: 1em roboto, sans-serif;
-        }
-    </style>
+    <link rel="stylesheet" href="shared/css/base.css">
+    <script src="shared/js/graph.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.15/lodash.min.js" integrity="sha256-VeNaFBVDhoX3H+gJ37DpT/nTuZTdjYro9yBruHjVmoQ=" crossorigin="anonymous"></script>
+    <script src="https://d3js.org/d3.v4.js"></script>
 </head>
 <body>
-<!-- Titla of the page -->
-<div>Home</div>
-
+<!-- Title of the page -->
+<div id="page-banner">Home</div>
 <!-- Menu -->
-<div>
-    <div>Menu</div>
-    <div><a href="index.html">Home</a></div>
-    <div><a href="all-transactions.html">All transactions</a></div>
-    <div><a href="by-id.html">Get transaction by id</a></div>
+<div class="nav">
+    <a class="nav-item" href="index.html">Home</a>
+    <a class="nav-item" href="all-transactions.html">All transactions</a>
+    <a class="nav-item" href="by-id.html">Get transaction by id</a>
+    <a class="nav-item" href="database.html">Database</a>
 </div>
+
 <!-- Get a specific transaction-->
 <div>Get transaction</div>
 <div>
