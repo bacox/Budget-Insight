@@ -25,4 +25,4 @@ jobs:
           command: 'mkdir build && cd build && cmake ..'
       - run:
           name: Creating Binary Files
-          command: 'cd build && make'
+          command: 'cd build && make -d budget-insight'
