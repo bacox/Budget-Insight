@@ -1,5 +1,9 @@
 # Budget-Insight
 
+| Branch           | Build Status                                                                                                                                      |
+|------------------|---------------------------------------------------------------------------------------------------------------------------------------------------|
+| Default (Master) | [![CircleCI](https://circleci.com/gh/bacox/Budget-Insight.svg?style=svg)](https://circleci.com/gh/bacox/Budget-Insight)                           |
+| Develop          | [![CircleCI](https://circleci.com/gh/bacox/Budget-Insight/tree/develop.svg?style=svg)](https://circleci.com/gh/bacox/Budget-Insight/tree/develop) |
 
 ## Deps
 Install Catch2
