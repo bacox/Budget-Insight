@@ -1,0 +1,42 @@
+html {
+    background-color: #f0efef;
+}
+body {
+    /*text-align: center;*/
+    font: 1em roboto, sans-serif;
+}
+
+body { font: 12px Arial;}
+svg {
+    background-color: #ddeedd;
+}
+
+#page-banner {
+    font-size: larger;
+    padding: 20px;
+}
+
+.nav {
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+.nav-item {
+    color:  #b0aac0;
+    padding: 10px;
+    background-color: ivory;
+}
+
+path {
+    stroke: steelblue;
+    stroke-width: 2;
+    fill: none;
+}
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: grey;
+    stroke-width: 1;
+    shape-rendering: crispEdges;
+}

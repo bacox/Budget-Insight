@@ -4,7 +4,7 @@
 
 #include "WebServer.h"
 #include "../../Util/include/TransactionTestGenerator.h"
-
+#include "../../Util/include/Log.h"
 
 WebServer::WebServer(int port) : port(port), server(port){
     configure();
@@ -13,15 +13,17 @@ WebServer::WebServer(int port) : port(port), server(port){
 void WebServer::configure() {
     server.registerController(&controller);
     server.registerController(&jsonController);
-    server.setOption("document_root", "../../www");
+    server.setOption("document_root", "../www/public");
     server.setOption("enable_directory_listing", "yes");
 }
 
 void WebServer::start() {
+    EN_INFO("Starting server");
     server.start();
 }
 
 void WebServer::stop() {
+    EN_INFO("Stopping server");
     server.stop();
 }
 
@@ -37,4 +39,9 @@ void WebServer::generateFakeData() {
         Transaction *t = gen.generate();
         TransactionApi::create((*t));
     }
+}
+
+void WebServer::reload() {
+    stop();
+    start();
 }

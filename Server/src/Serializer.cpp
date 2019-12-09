@@ -20,6 +20,7 @@ Json::Value Serializer::TransactionToJson(Transaction &t) {
     root["paymentReference"] = t.getPaymentReference();
     root["description"] = t.getDescription();
     root["statementNumber"] = t.getStatementNumber();
+    root["balanceBefore"] = t.getBalanceBeforeMutation();
 
     return root;
 }

@@ -23,6 +23,7 @@ public:
     void stop();
     void dumpRoutes();
     void generateFakeData();
+    void reload();
 };
 
 
