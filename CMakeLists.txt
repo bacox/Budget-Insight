@@ -12,10 +12,10 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/target/bin)
 
 
 add_subdirectory(thirdparty/spdlog)
-find_package(spdlog)
-#include_directories(
-#        thirdparty/spdlog/include/spdlog
-#)
+#find_package(spdlog)
+include_directories(
+        thirdparty/spdlog/include
+)
 
 SET(WEBSERVER ${CMAKE_BINARY_DIR}/target/www)
 SET(WEBSERVER_BARE ${CMAKE_BINARY_DIR}/target)
@@ -49,6 +49,11 @@ include_directories(
         Server/thirdparty/jsoncpp/include
 )
 #include_directories(Server/thirdparty/mongoose-cpp)
+
+get_property(dirs DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY INCLUDE_DIRECTORIES)
+foreach(dir ${dirs})
+    message(STATUS "dir='${dir}'")
+endforeach()
 
 add_executable(budget-insight
         Util/src/RandomHelper.cpp
